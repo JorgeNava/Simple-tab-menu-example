@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   name = 'Angular';
-  activeTab = 'None';
+  activeTab = 'none';
 
   message = {
     attachment: {
@@ -30,14 +30,22 @@ export class AppComponent {
     }
   };
 
+  onTabClick(event: any): void {
+    const BUTTON_TITLE = event.target.title;
+    if (this.activeTab === BUTTON_TITLE) {
+      this.activeTab = 'none';
+    } else {
+      this.activeTab = BUTTON_TITLE;
+    }
+    console.log('Tab clicked: ', BUTTON_TITLE);
+  }
+
   onButtonClick(message: string): void {
     const RET_VAL = {
       type: 'user',
       text: message,
       timestamp: new Date().getTime()
     };
-    this.activeTab = 'lastIntents';
     console.log('Button clicked: ', RET_VAL);
-    //this.onTopLastSearchesItemClicked.emit(RET_VAL);
   }
 }
