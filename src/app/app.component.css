@@ -1,3 +1,8 @@
-p {
-  font-family: Lato;
+.intents-tabs-active,
+.intents-tabs:hover {
+  background-color: blue;
+  color: white;
+}
+.testMe {
+  width: 50%;
 }

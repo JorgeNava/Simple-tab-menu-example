@@ -1,17 +1,18 @@
 <div class="nav nav-tabs">
-  <button *ngFor="let tab of tabs"
-    [ngClass]="getTabClass(tab)"
+  <button *ngFor="let tab of x_tabs"
+    [ngClass]="x_getTabClass(tab)"
     title={{tab.title}}
     name={{tab.name}}
-    (click)="onTabClick($event)">
+    type="button"
+    (click)="x_onTabClick($event)">
     {{tab.title}}
   </button>
 </div>
 <div class="tab-content">
-  <div *ngIf="activeTab.title" class="tab-pane fade show active">
-    <div *ngFor="let button of message?.attachment?.attachments[activeTab.name]">
+  <div *ngIf="x_activeTab.title" class="tab-pane fade show active">
+    <div *ngFor="let button of x_message?.attachment?.attachments[x_activeTab.name]">
       <button
-        (click)="onButtonClick(button.title)"
+        (click)="x_onButtonClick(button.title)"
         [disabled]="button.disabled">
         {{button.title}}
       </button>

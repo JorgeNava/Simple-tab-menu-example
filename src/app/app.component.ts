@@ -7,13 +7,13 @@ const lodash = require('lodash');
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  activeTab = { title: null, name: null };
-  tabs = [
+  x_activeTab = { title: null, name: null };
+  x_tabs = [
     { title: 'Top Intents', name: 'topIntents' },
     { title: 'Last Intents', name: 'lastIntents' }
   ];
 
-  message = {
+  x_message = {
     attachment: {
       attachments: {
         topIntents: [
@@ -34,28 +34,30 @@ export class AppComponent {
     }
   };
 
-  isTabActive(tab: object): boolean {
-    return lodash.isEqual(this.activeTab, tab);
+  x_isTabActive(tab: object): boolean {
+    return lodash.isEqual(this.x_activeTab, tab);
   }
 
-  getTabClass(tab: object): string {
-    const RET_VAL = this.isTabActive(tab) ? 'nav-link active' : 'nav-link';
+  x_getTabClass(tab: object): string {
+    const RET_VAL = this.x_isTabActive(tab)
+      ? 'nav-link w-50 intents-tabs-active'
+      : 'nav-link w-50 intents-tabs';
     return RET_VAL;
   }
 
-  onTabClick(event: any): void {
+  x_onTabClick(event: any): void {
     const BUTTON_TITLE = event.target.title;
     const BUTTON_NAME = event.target.name;
-    if (this.activeTab.title === BUTTON_TITLE) {
-      this.activeTab.title = null;
-      this.activeTab.name = null;
+    if (this.x_activeTab.title === BUTTON_TITLE) {
+      this.x_activeTab.title = null;
+      this.x_activeTab.name = null;
     } else {
-      this.activeTab.title = BUTTON_TITLE;
-      this.activeTab.name = BUTTON_NAME;
+      this.x_activeTab.title = BUTTON_TITLE;
+      this.x_activeTab.name = BUTTON_NAME;
     }
   }
 
-  onButtonClick(message: string): void {
+  x_onButtonClick(message: string): void {
     const RET_VAL = {
       type: 'user',
       text: message,
