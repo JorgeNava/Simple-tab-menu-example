@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+const lodash = require('lodash');
 
 @Component({
   selector: 'my-app',
@@ -6,8 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  name = 'Angular';
-  activeTab = { title: 'None', name: 'none' };
+  activeTab = { title: null, name: null };
   tabs = [
     { title: 'Top Intents', name: 'topIntents' },
     { title: 'Last Intents', name: 'lastIntents' }
@@ -34,17 +34,25 @@ export class AppComponent {
     }
   };
 
+  isTabActive(tab: object): boolean {
+    return lodash.isEqual(this.activeTab, tab);
+  }
+
+  getTabClass(tab: object): string {
+    const RET_VAL = this.isTabActive(tab) ? 'nav-link active' : 'nav-link';
+    return RET_VAL;
+  }
+
   onTabClick(event: any): void {
     const BUTTON_TITLE = event.target.title;
+    const BUTTON_NAME = event.target.name;
     if (this.activeTab.title === BUTTON_TITLE) {
-      this.activeTab.title = 'None';
-      this.activeTab.name = 'none';
+      this.activeTab.title = null;
+      this.activeTab.name = null;
     } else {
       this.activeTab.title = BUTTON_TITLE;
-      this.activeTab.name =
-        BUTTON_TITLE == 'Top Intents' ? 'topIntents' : 'lastIntents';
+      this.activeTab.name = BUTTON_NAME;
     }
-    console.log('Tab clicked: ', BUTTON_TITLE);
   }
 
   onButtonClick(message: string): void {
@@ -53,6 +61,5 @@ export class AppComponent {
       text: message,
       timestamp: new Date().getTime()
     };
-    console.log('Button clicked: ', RET_VAL);
   }
 }

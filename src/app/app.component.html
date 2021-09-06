@@ -1,13 +1,14 @@
 <div class="nav nav-tabs">
   <button *ngFor="let tab of tabs"
-    class="nav-link"
+    [ngClass]="getTabClass(tab)"
     title={{tab.title}}
+    name={{tab.name}}
     (click)="onTabClick($event)">
     {{tab.title}}
   </button>
 </div>
 <div class="tab-content">
-  <div *ngIf="activeTab.title !== 'None'" class="tab-pane fade show active">
+  <div *ngIf="activeTab.title" class="tab-pane fade show active">
     <div *ngFor="let button of message?.attachment?.attachments[activeTab.name]">
       <button
         (click)="onButtonClick(button.title)"
