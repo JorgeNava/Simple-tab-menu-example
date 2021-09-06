@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   name = 'Angular';
   activeTab = 'none';
+  tabs = [{ title: 'Top Intents' }, { title: 'Last Intents' }];
 
   message = {
     attachment: {

@@ -1,24 +1,13 @@
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link active"
-      title="topIntents"
-      aria-controls="home"
-      (click)="onTabClick($event)"
-      aria-selected="true">
-      Top
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-    title="lastIntents"
-    (click)="onTabClick($event)"
-
-      aria-selected="false">Profile</button>
-  </li>
-</ul>
+<div class="nav nav-tabs">
+  <button *ngFor="let tab of tabs"
+    class="nav-link active"
+    title={{tab.title}}
+    (click)="onTabClick($event)">
+    {{tab.title}}
+  </button>
+</div>
 <div class="tab-content" id="myTabContent">
-  <div [ngClass]="activeTab == 'topIntents' ? 'tab-pane fade show active' : 'tab-pane fade'" id="home" role="tabpanel"
+  <div [ngClass]="activeTab == 'Top Intents' ? 'tab-pane fade show active' : 'tab-pane fade'" id="home" role="tabpanel"
     aria-labelledby="home-tab">
     <div *ngFor="let button of message?.attachment?.attachments?.topIntents">
       <button
@@ -30,7 +19,7 @@
       </button>
     </div>
   </div>
-  <div [ngClass]="activeTab == 'lastIntents' ? 'tab-pane fade show active' : 'tab-pane fade'" id="profile"
+  <div [ngClass]="activeTab == 'Last Intents' ? 'tab-pane fade show active' : 'tab-pane fade'" id="profile"
     role="tabpanel" aria-labelledby="profile-tab">
     <div *ngFor="let button of message?.attachment?.attachments?.lastIntents">
       <button
