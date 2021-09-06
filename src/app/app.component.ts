@@ -7,8 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   name = 'Angular';
-  activeTab = 'none';
-  tabs = [{ title: 'Top Intents' }, { title: 'Last Intents' }];
+  activeTab = { title: 'None', name: 'none' };
+  tabs = [
+    { title: 'Top Intents', name: 'topIntents' },
+    { title: 'Last Intents', name: 'lastIntents' }
+  ];
 
   message = {
     attachment: {
@@ -33,10 +36,13 @@ export class AppComponent {
 
   onTabClick(event: any): void {
     const BUTTON_TITLE = event.target.title;
-    if (this.activeTab === BUTTON_TITLE) {
-      this.activeTab = 'none';
+    if (this.activeTab.title === BUTTON_TITLE) {
+      this.activeTab.title = 'None';
+      this.activeTab.name = 'none';
     } else {
-      this.activeTab = BUTTON_TITLE;
+      this.activeTab.title = BUTTON_TITLE;
+      this.activeTab.name =
+        BUTTON_TITLE == 'Top Intents' ? 'topIntents' : 'lastIntents';
     }
     console.log('Tab clicked: ', BUTTON_TITLE);
   }

@@ -1,32 +1,17 @@
 <div class="nav nav-tabs">
   <button *ngFor="let tab of tabs"
-    class="nav-link active"
+    class="nav-link"
     title={{tab.title}}
     (click)="onTabClick($event)">
     {{tab.title}}
   </button>
 </div>
-<div class="tab-content" id="myTabContent">
-  <div [ngClass]="activeTab == 'Top Intents' ? 'tab-pane fade show active' : 'tab-pane fade'" id="home" role="tabpanel"
-    aria-labelledby="home-tab">
-    <div *ngFor="let button of message?.attachment?.attachments?.topIntents">
+<div class="tab-content">
+  <div *ngIf="activeTab.title !== 'None'" class="tab-pane fade show active">
+    <div *ngFor="let button of message?.attachment?.attachments[activeTab.name]">
       <button
         (click)="onButtonClick(button.title)"
-        [disabled]="button.disabled"
-        placement="top bottom"
-        container="body">
-        {{button.title}}
-      </button>
-    </div>
-  </div>
-  <div [ngClass]="activeTab == 'Last Intents' ? 'tab-pane fade show active' : 'tab-pane fade'" id="profile"
-    role="tabpanel" aria-labelledby="profile-tab">
-    <div *ngFor="let button of message?.attachment?.attachments?.lastIntents">
-      <button
-        (click)="onButtonClick(button.title)"
-        [disabled]="button.disabled"
-        placement="top bottom"
-        container="body">
+        [disabled]="button.disabled">
         {{button.title}}
       </button>
     </div>
